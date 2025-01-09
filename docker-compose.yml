@@ -1,9 +1,9 @@
 version: '3.8'
 services:
   vprodb:
-    build: 
+    build:
       context: ./Docker-files/db
-    image: vprocontainers/vprofiledb
+    image: anshu46/vprofiledb1
     container_name: vprodb
     ports:
       - "3306:3306"
@@ -16,7 +16,7 @@ services:
     image: memcached
     ports:
       - "11211:11211"
-
+  
   vpromq01:
     image: rabbitmq
     ports:
@@ -26,24 +26,26 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
 
   vproapp:
-    build: 
+    build:
       context: ./Docker-files/app
-    image: vprocontainers/vprofileapp
+    image: anshu46/vprofileapp1
     container_name: vproapp
     ports:
       - "8080:8080"
     volumes:
       - vproappdata:/usr/local/tomcat/webapps
-    
+
   vproweb:
-    build: 
+    build:
       context: ./Docker-files/web
-    image: vprocontainers/vprofileweb
+    image: anshu46/vprofileweb1
     container_name: vproweb
     ports:
       - "80:80"
-
+    
 volumes:
    vprodbdata: {}
    vproappdata: {}
-  
+
+     
+    
